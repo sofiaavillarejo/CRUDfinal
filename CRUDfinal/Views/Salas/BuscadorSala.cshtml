@@ -1,0 +1,42 @@
+﻿@model List<Sala>
+
+@{
+	List<int> idHospitales = ViewData["HOSPITAL_COD"] as List<int>;
+}
+
+<h1>Buscador de Salas por idHospital</h1>
+
+<form method="post">
+	<label>Id Hospital:</label>
+	<select name="Hospital_cod" class="form-control">
+		@foreach (int id in idHospitales)
+		{
+			<option value="@id">@id</option>
+		}
+	</select>
+	<button class="btn btn-info">Buscar salas</button>
+</form>
+
+@if (Model != null)
+{
+	<table style="margin-top: 2rem" class="table table-striped">
+		<thead>
+			<tr>
+				<th>ID sala</th>
+				<th>Nombre</th>
+				<th>Numero de camas</th>
+			</tr>
+		</thead>
+		<tbody>
+			@foreach (Sala sala in Model)
+			{
+				<tr>
+					<td>@sala.Hospital_cod</td>
+					<td>@sala.Sala_cod</td>
+					<td>@sala.Nombre</td>
+					<td>@sala.Numcama</td>
+				</tr>
+			}
+		</tbody>
+	</table>
+}
